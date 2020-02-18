@@ -1,0 +1,3 @@
+The libvhcall-fortran package contains a library which is used by VE
+programs to invoke Fortran subroutine or function on VH side.
+

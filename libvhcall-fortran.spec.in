@@ -1,0 +1,63 @@
+Name:           @PACKAGE_NAME@
+
+Version:        @PACKAGE_VERSION@
+Release:        @RELEASE@%{?dist}
+Summary:        VHcall Fortran library
+Group:          System Environment/Libraries
+License:        MIT
+#ULI:
+Source0:        @PACKAGE_NAME@-@PACKAGE_VERSION@.tar.gz
+Vendor:         NEC Corporation
+BuildArch:      x86_64
+BuildRequires:  vedebuginfo
+BuildRequires:  libsysve-devel
+
+%description
+The libvhcall-fortran package contains a library which is used by VE
+programs to invoke Fortran subroutine or function on VH side.
+
+%package        devel
+Summary:        Headers for libvhcall-fortran
+Requires:       %{name} = %{version}-%{release}
+
+%description    devel
+This package contains the files required to build VE programs that use
+libraries in libvhcall-fortran package
+
+%define _prefix @prefix@
+%define _libdir @prefix@/lib
+%define __strip @prefix@/bin/nstrip
+%global __debug_install_post @prefix@/libexec/find-debuginfo.sh %{nil}
+
+%prep
+%{__rm} -rf ${RPM_BUILD_ROOT}
+
+%setup -q -n @PACKAGE_NAME@-@PACKAGE_VERSION@
+
+%build
+./configure --host=ve-nec-linux \
+    --prefix=%{_prefix} \
+    CC=@CC@ FC=@FC@
+sed -i -e 's/^wl=""$/wl="-Wl,"/g' libtool # workaround to specify "-Wl,soname=xxx' instead of "soname=xxx
+make
+
+%install
+make install DESTDIR=${RPM_BUILD_ROOT}
+
+%clean
+ls -l %{_libdir}
+%{__rm} -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+%{_libdir}/*.so.*
+
+%files devel
+%defattr(-,root,root,-)
+%doc
+%{_includedir}/*.mod
+%{_libdir}/*.a
+%{_libdir}/*.la
+%{_libdir}/*.so
+
+%changelog
