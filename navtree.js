@@ -2,6 +2,7 @@ var NAVTREE =
 [
   [ "libvhcall-fortran", "index.html", [
     [ "Introduction", "index.html", null ],
+    [ "Getting Started with VH Call Fortran API", "md_doc_FVHCall.html", null ],
     [ "Data Types List", null, [
       [ "Data Types List", "annotated.html", "annotated" ],
       [ "Data Fields", "functions.html", [
@@ -9,13 +10,14 @@ var NAVTREE =
         [ "Functions/Subroutines", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Examples", "examples.html", "examples" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"Makefile-example.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
