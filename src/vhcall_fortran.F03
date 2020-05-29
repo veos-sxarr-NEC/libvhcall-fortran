@@ -70,11 +70,12 @@
 !> @note The arguments of VH function/subroutine can't be defined with
 !>       VALUE, POINTER or ALLOCATABLE.
 !>
-!> Please add the following code.
+!> Please add the following code and specify -lvhcall_fortran option to 
+!> compile VE fortran program.
 !> @code
-!> USE VHCALL_FOTRAN
+!> USE VHCALL_FORTRAN
 !> @endcode
-!> @note  Fortran compiler for VH is only supported gfortran 4.8.5.
+!> @note  Fortran compiler for VH is only supported gfortran 4.8.5 or 8.3.1.
 !>        Using other fortran compilers may cause unexpected behavior.
 !-------------------------------------------------------------------------------
 MODULE vhcall_fortran
