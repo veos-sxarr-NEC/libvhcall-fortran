@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="libvhcall-fortran 2.4.1" ref="index.html">
+      <section title="libvhcall-fortran 2.5" ref="index.html">
         <section title="Introduction" ref="index.html" />
         <section title="Getting Started with VH Call Fortran API" ref="md_doc_FVHCall.html" />
         <section title="Data Types List">
