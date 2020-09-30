@@ -42,8 +42,7 @@ Please see [VH Call Fortran](classvhcall__fortran.html) for more detail.
 ## VH shared library Function or Subroutine
 User can define Fortran function or subroutine for VH as below:
 - The arguments need to be string, scalar or 1-3 dimension array.
-- Type of scalar is INTEGER, REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.
-- Type of array is REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.
+- Type of scalar and array is INTEGER, REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.
 - Array object needs to be contiguous on memory e.g. array(::-1) or array(1,:) can't be specified.
 - The return value of function needs to be 8byte INTEGER.
 

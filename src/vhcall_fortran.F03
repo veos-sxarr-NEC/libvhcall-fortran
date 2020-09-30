@@ -42,8 +42,8 @@
 !> subroutine or function on VH side from a VE program.
 !>
 !> The arguments need to be string, scalar or 1-3 dimensional array.
-!> - Type of scalar is INTEGER, REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.
-!> - Type of array is REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.
+!> - Type of scalar and array is INTEGER, REAL, DOUBLE, COMPLEX or DOUBLE 
+!>   COMPLEX.
 !> - Array object needs to be contiguous on memory e.g. array(::-1) or
 !>   array(1,:) can't be specified.
 !>
@@ -98,6 +98,9 @@ IMPLICIT NONE
 !>
 !> - fvhcall_args_set_string
 !> - fvhcall_args_set_integer
+!> - fvhcall_args_set_iarr_d1
+!> - fvhcall_args_set_iarr_d2
+!> - fvhcall_args_set_iarr_d3
 !> - fvhcall_args_set_real
 !> - fvhcall_args_set_rarr_d1
 !> - fvhcall_args_set_rarr_d2
@@ -115,7 +118,9 @@ IMPLICIT NONE
 !> - fvhcall_args_set_dcarr_d2
 !> - fvhcall_args_set_dcarr_d3
 INTERFACE fvhcall_args_set
-    PROCEDURE fvhcall_args_set_string,  fvhcall_args_set_integer, &
+    PROCEDURE fvhcall_args_set_string,  &
+             &fvhcall_args_set_integer, fvhcall_args_set_iarr_d1, &
+             &fvhcall_args_set_iarr_d2, fvhcall_args_set_iarr_d3, &
              &fvhcall_args_set_real,    fvhcall_args_set_rarr_d1, &
              &fvhcall_args_set_rarr_d2, fvhcall_args_set_rarr_d3, &
              &fvhcall_args_set_double,  fvhcall_args_set_darr_d1, &
@@ -309,6 +314,93 @@ IMPLICIT NONE
     fvhcall_args_set_integer=vhcall_args_set_pointer(args, &
     intent, argnum-1, C_LOC(val), BUFLEN)
 END FUNCTION fvhcall_args_set_integer
+
+!> @brief Set an argument of 1 dimensional array of type integer.
+!> @note  Value set to args need to be able to be referenced at invoking
+!>        fvhcall_invoke_with_args.
+!> @note  Value set to args need to have same type(kind) and shape
+!>        of argument on VH side because VE and VH would like to access
+!>        same data.
+!> @param[in] args 64-bit integer specifying arguments object
+!> @param[in] intent parameter of fvhcall_intent_[in/out/inout].
+!>            This specifies what the argument is used for input,
+!>            output or input/output.
+!> @param[in] argnum the argnum-th argument of callee function (counting
+!>            from 1).
+!> @param[in] val value to be set
+!> @return On success, returns 0. On failure, returns -1.
+FUNCTION fvhcall_args_set_iarr_d1 (args, intent, argnum, val)
+USE ISO_C_BINDING
+USE VHCALL_FORTRAN_LOWLEVEL
+IMPLICIT NONE
+    INTEGER              :: fvhcall_args_set_iarr_d1
+    INTEGER(int64),     VALUE :: args
+    INTEGER,     VALUE :: intent
+    INTEGER,     VALUE :: argnum
+    INTEGER,     TARGET :: val(:)
+    INTEGER(int64)            :: BUFLEN
+    BUFLEN = C_SIZEOF(val(1))*size(val)
+    fvhcall_args_set_iarr_d1=vhcall_args_set_pointer(args, &
+    intent, argnum-1, C_LOC(val), BUFLEN)
+END FUNCTION fvhcall_args_set_iarr_d1
+
+!> @brief Set an argument of 2 dimensional array of type integer.
+!> @note  Value set to args need to be able to be referenced at invoking
+!>        fvhcall_invoke_with_args.
+!> @note  Value set to args need to have same type(kind) and shape
+!>        of argument on VH side because VE and VH would like to access
+!>        same data.
+!> @param[in] args 64-bit integer specifying arguments object
+!> @param[in] intent parameter of fvhcall_intent_[in/out/inout].
+!>            This specifies what the argument is used for input,
+!>            output or input/output.
+!> @param[in] argnum the argnum-th argument of callee function (counting
+!>            from 1).
+!> @param[in] val value to be set
+!> @return On success, returns 0. On failure, returns -1.
+FUNCTION fvhcall_args_set_iarr_d2 (args, intent, argnum, val)
+USE ISO_C_BINDING
+USE VHCALL_FORTRAN_LOWLEVEL
+IMPLICIT NONE
+    INTEGER              :: fvhcall_args_set_iarr_d2
+    INTEGER(int64),     VALUE :: args
+    INTEGER,     VALUE :: intent
+    INTEGER,     VALUE :: argnum
+    INTEGER,         TARGET :: val(:,:)
+    INTEGER(int64)            :: BUFLEN
+    BUFLEN = C_SIZEOF(val(1,1))*size(val)
+    fvhcall_args_set_iarr_d2=vhcall_args_set_pointer(args, &
+    intent, argnum-1, C_LOC(val), BUFLEN)
+END FUNCTION fvhcall_args_set_iarr_d2
+
+!> @brief Set an argument of 3 dimensional array of type integer.
+!> @note  Value set to args need to be able to be referenced at invoking
+!>        fvhcall_invoke_with_args.
+!> @note  Value set to args need to have same type(kind) and shape
+!>        of argument on VH side because VE and VH would like to access
+!>        same data.
+!> @param[in] args 64-bit integer specifying arguments object
+!> @param[in] intent parameter of fvhcall_intent_[in/out/inout].
+!>            This specifies what the argument is used for input,
+!>            output or input/output.
+!> @param[in] argnum the argnum-th argument of callee function (counting
+!>            from 1).
+!> @param[in] val value to be set
+!> @return On success, returns 0. On failure, returns -1.
+FUNCTION fvhcall_args_set_iarr_d3 (args, intent, argnum, val)
+USE ISO_C_BINDING
+USE VHCALL_FORTRAN_LOWLEVEL
+IMPLICIT NONE
+    INTEGER              :: fvhcall_args_set_iarr_d3
+    INTEGER(int64),     VALUE :: args
+    INTEGER,     VALUE :: intent
+    INTEGER,     VALUE :: argnum
+    INTEGER,         TARGET :: val(:,:,:)
+    INTEGER(int64)            :: BUFLEN
+    BUFLEN = C_SIZEOF(val(1,1,1))*size(val)
+    fvhcall_args_set_iarr_d3=vhcall_args_set_pointer(args, &
+    intent, argnum-1, C_LOC(val), BUFLEN)
+END FUNCTION fvhcall_args_set_iarr_d3
 
 !> @brief Set a real argument.
 !> @note  Value set to args need to be able to be referenced at invoking
