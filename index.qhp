@@ -5,7 +5,7 @@
   <filterSection>
     <filterAttribute>doxygen</filterAttribute>
     <toc>
-      <section title="libvhcall-fortran 2.5" ref="index.html">
+      <section title="libvhcall-fortran 2.7" ref="index.html">
         <section title="Introduction" ref="index.html" />
         <section title="Getting Started with VH Call Fortran API" ref="md_doc_FVHCall.html" />
         <section title="Data Types List">
@@ -21,6 +21,9 @@
               <section title="fvhcall_invoke_with_args" ref="classvhcall__fortran.html#a289fbaf6739314c91689c32ec8c3dfc6" />
               <section title="fvhcall_args_set_string" ref="classvhcall__fortran.html#aacc3d9e565d1af9983ab501674d816a6" />
               <section title="fvhcall_args_set_integer" ref="classvhcall__fortran.html#a3344f488c050396ffeb668f050e53b1d" />
+              <section title="fvhcall_args_set_iarr_d1" ref="classvhcall__fortran.html#a7d6c602828de3831671cabad4311b45a" />
+              <section title="fvhcall_args_set_iarr_d2" ref="classvhcall__fortran.html#ad4e6eac55b008d6a527886c6e77df996" />
+              <section title="fvhcall_args_set_iarr_d3" ref="classvhcall__fortran.html#a32818d91ddfc04487b7eeeefb98de203" />
               <section title="fvhcall_args_set_real" ref="classvhcall__fortran.html#a5756493251a3ff74f418dbf4da321dcf" />
               <section title="fvhcall_args_set_rarr_d1" ref="classvhcall__fortran.html#a24b00d6e8eaeaba1797fa47f14e22bd9" />
               <section title="fvhcall_args_set_rarr_d2" ref="classvhcall__fortran.html#a41564234f8209846f083d959abb9b3e4" />
@@ -97,6 +100,9 @@
       <keyword name="fvhcall_invoke_with_args" id="vhcall_fortran::fvhcall_invoke_with_args" ref="classvhcall__fortran.html#a289fbaf6739314c91689c32ec8c3dfc6" />
       <keyword name="fvhcall_args_set_string" id="vhcall_fortran::fvhcall_args_set_string" ref="classvhcall__fortran.html#aacc3d9e565d1af9983ab501674d816a6" />
       <keyword name="fvhcall_args_set_integer" id="vhcall_fortran::fvhcall_args_set_integer" ref="classvhcall__fortran.html#a3344f488c050396ffeb668f050e53b1d" />
+      <keyword name="fvhcall_args_set_iarr_d1" id="vhcall_fortran::fvhcall_args_set_iarr_d1" ref="classvhcall__fortran.html#a7d6c602828de3831671cabad4311b45a" />
+      <keyword name="fvhcall_args_set_iarr_d2" id="vhcall_fortran::fvhcall_args_set_iarr_d2" ref="classvhcall__fortran.html#ad4e6eac55b008d6a527886c6e77df996" />
+      <keyword name="fvhcall_args_set_iarr_d3" id="vhcall_fortran::fvhcall_args_set_iarr_d3" ref="classvhcall__fortran.html#a32818d91ddfc04487b7eeeefb98de203" />
       <keyword name="fvhcall_args_set_real" id="vhcall_fortran::fvhcall_args_set_real" ref="classvhcall__fortran.html#a5756493251a3ff74f418dbf4da321dcf" />
       <keyword name="fvhcall_args_set_rarr_d1" id="vhcall_fortran::fvhcall_args_set_rarr_d1" ref="classvhcall__fortran.html#a24b00d6e8eaeaba1797fa47f14e22bd9" />
       <keyword name="fvhcall_args_set_rarr_d2" id="vhcall_fortran::fvhcall_args_set_rarr_d2" ref="classvhcall__fortran.html#a41564234f8209846f083d959abb9b3e4" />

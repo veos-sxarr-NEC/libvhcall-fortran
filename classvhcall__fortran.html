@@ -25,7 +25,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">libvhcall-fortran
-   &#160;<span id="projectnumber">2.5</span>
+   &#160;<span id="projectnumber">2.7</span>
    </div>
   </td>
  </tr>
@@ -98,6 +98,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3344f488c050396ffeb668f050e53b1d"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvhcall__fortran.html#a3344f488c050396ffeb668f050e53b1d">fvhcall_args_set_integer</a> (args, intent, argnum, val)</td></tr>
 <tr class="memdesc:a3344f488c050396ffeb668f050e53b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an integer argument.  <a href="#a3344f488c050396ffeb668f050e53b1d">More...</a><br/></td></tr>
 <tr class="separator:a3344f488c050396ffeb668f050e53b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d6c602828de3831671cabad4311b45a"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvhcall__fortran.html#a7d6c602828de3831671cabad4311b45a">fvhcall_args_set_iarr_d1</a> (args, intent, argnum, val)</td></tr>
+<tr class="memdesc:a7d6c602828de3831671cabad4311b45a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an argument of 1 dimensional array of type integer.  <a href="#a7d6c602828de3831671cabad4311b45a">More...</a><br/></td></tr>
+<tr class="separator:a7d6c602828de3831671cabad4311b45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4e6eac55b008d6a527886c6e77df996"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvhcall__fortran.html#ad4e6eac55b008d6a527886c6e77df996">fvhcall_args_set_iarr_d2</a> (args, intent, argnum, val)</td></tr>
+<tr class="memdesc:ad4e6eac55b008d6a527886c6e77df996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an argument of 2 dimensional array of type integer.  <a href="#ad4e6eac55b008d6a527886c6e77df996">More...</a><br/></td></tr>
+<tr class="separator:ad4e6eac55b008d6a527886c6e77df996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32818d91ddfc04487b7eeeefb98de203"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvhcall__fortran.html#a32818d91ddfc04487b7eeeefb98de203">fvhcall_args_set_iarr_d3</a> (args, intent, argnum, val)</td></tr>
+<tr class="memdesc:a32818d91ddfc04487b7eeeefb98de203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an argument of 3 dimensional array of type integer.  <a href="#a32818d91ddfc04487b7eeeefb98de203">More...</a><br/></td></tr>
+<tr class="separator:a32818d91ddfc04487b7eeeefb98de203"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5756493251a3ff74f418dbf4da321dcf"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvhcall__fortran.html#a5756493251a3ff74f418dbf4da321dcf">fvhcall_args_set_real</a> (args, intent, argnum, val)</td></tr>
 <tr class="memdesc:a5756493251a3ff74f418dbf4da321dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a real argument.  <a href="#a5756493251a3ff74f418dbf4da321dcf">More...</a><br/></td></tr>
 <tr class="separator:a5756493251a3ff74f418dbf4da321dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,8 +172,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>VH call Fortran API provides features which invoke Fortran subroutine or function on VH side from a VE program. </p>
 <p>The arguments need to be string, scalar or 1-3 dimensional array.</p>
 <ul>
-<li>Type of scalar is INTEGER, REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.</li>
-<li>Type of array is REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.</li>
+<li>Type of scalar and array is INTEGER, REAL, DOUBLE, COMPLEX or DOUBLE COMPLEX.</li>
 <li>Array object needs to be contiguous on memory e.g. array(::-1) or array(1,:) can't be specified.</li>
 </ul>
 <p>The return value of function needs to be 64bit INTEGER.</p>
@@ -474,6 +482,165 @@ Value set to args need to have same type(kind) and shape of argument on VH side 
 </div><div class="memdoc">
 
 <p>Set an integer argument. </p>
+<dl class="section note"><dt>Note</dt><dd>Value set to args need to be able to be referenced at invoking fvhcall_invoke_with_args. </dd>
+<dd>
+Value set to args need to have same type(kind) and shape of argument on VH side because VE and VH would like to access same data. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>64-bit integer specifying arguments object </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">intent</td><td>parameter of fvhcall_intent_[in/out/inout]. This specifies what the argument is used for input, output or input/output. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argnum</td><td>the argnum-th argument of callee function (counting from 1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns 0. On failure, returns -1. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d6c602828de3831671cabad4311b45a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function vhcall_fortran::fvhcall_args_set_iarr_d1 </td>
+          <td>(</td>
+          <td class="paramtype">integer(int64)&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>intent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>argnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:), target&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set an argument of 1 dimensional array of type integer. </p>
+<dl class="section note"><dt>Note</dt><dd>Value set to args need to be able to be referenced at invoking fvhcall_invoke_with_args. </dd>
+<dd>
+Value set to args need to have same type(kind) and shape of argument on VH side because VE and VH would like to access same data. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>64-bit integer specifying arguments object </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">intent</td><td>parameter of fvhcall_intent_[in/out/inout]. This specifies what the argument is used for input, output or input/output. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argnum</td><td>the argnum-th argument of callee function (counting from 1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns 0. On failure, returns -1. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad4e6eac55b008d6a527886c6e77df996"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function vhcall_fortran::fvhcall_args_set_iarr_d2 </td>
+          <td>(</td>
+          <td class="paramtype">integer(int64)&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>intent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>argnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:,:), target&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set an argument of 2 dimensional array of type integer. </p>
+<dl class="section note"><dt>Note</dt><dd>Value set to args need to be able to be referenced at invoking fvhcall_invoke_with_args. </dd>
+<dd>
+Value set to args need to have same type(kind) and shape of argument on VH side because VE and VH would like to access same data. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>64-bit integer specifying arguments object </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">intent</td><td>parameter of fvhcall_intent_[in/out/inout]. This specifies what the argument is used for input, output or input/output. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">argnum</td><td>the argnum-th argument of callee function (counting from 1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>value to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns 0. On failure, returns -1. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a32818d91ddfc04487b7eeeefb98de203"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function vhcall_fortran::fvhcall_args_set_iarr_d3 </td>
+          <td>(</td>
+          <td class="paramtype">integer(int64)&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>intent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>argnum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:,:,:), target&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set an argument of 3 dimensional array of type integer. </p>
 <dl class="section note"><dt>Note</dt><dd>Value set to args need to be able to be referenced at invoking fvhcall_invoke_with_args. </dd>
 <dd>
 Value set to args need to have same type(kind) and shape of argument on VH side because VE and VH would like to access same data. </dd></dl>
