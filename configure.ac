@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([libvhcall-fortran], [2.7])
+AC_INIT([libvhcall-fortran], [2.8])
 AC_LANG([Fortran])
 AC_CONFIG_SRCDIR([src/Makefile.am])
 AC_CONFIG_AUX_DIR([./build-aux])

@@ -30,7 +30,29 @@
 !> libvhcall-fortran-devel package needs to be installed.
 !>
 !> \author NEC Corporation
-!> \copyright 2019-2020. Licensed under the terms of the MIT license.
+!> \copyright 2019-2021. Licensed under the terms of the MIT license.
+!>
+!> @par Revision History
+!>      Revision,
+!>      Date,
+!>      Updates/Remarks
+!> @par 
+!>      Rev.6, 
+!>      Mar. 2021, @n
+!>      This revision covers libvhcall-fortran-2.7 or later. @n
+!>      Added "Revision History".
+!> @par 
+!>      Rev.5,
+!>      Sep. 2020, @n
+!>      This revision covers libvhcall-fortran-2.7 or later. @n
+!>      Added descriptions for new APIs to pass an INTEGER array.
+!> @par 
+!>      Rev.4, 
+!>      Mar. 2020, @n
+!>      This revision covers libvhcall-fortran-2.5 or later. @n
+!>      Updated a note for supporting gfortran.
+!>
+!>
 !-------------------------------------------------------------------------------
 !
 !-------------------------------------------------------------------------------
