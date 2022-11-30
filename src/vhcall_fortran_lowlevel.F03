@@ -92,6 +92,14 @@ IMPLICIT NONE
 INTEGER (KIND=C_INT64_T)            :: vhcall_args_alloc
 END FUNCTION vhcall_args_alloc
 
+!=vhcall_args *vhcall_args_alloc_num(int);
+FUNCTION vhcall_args_alloc_num (num)    BIND(C,NAME='vhcall_args_alloc_num')
+USE, INTRINSIC :: ISO_C_BINDING
+IMPLICIT NONE
+INTEGER (KIND=C_INT64_T)                 :: vhcall_args_alloc_num
+INTEGER (KIND=C_INT),              VALUE :: num
+END FUNCTION vhcall_args_alloc_num
+
 !=int vhcall_args_set_pointer(vhcall_args *, enum vhcall_args_intent,
 !                             int, void *, size_t);
 FUNCTION vhcall_args_set_pointer (args, argIntent, num, buffer, bufferLen) &

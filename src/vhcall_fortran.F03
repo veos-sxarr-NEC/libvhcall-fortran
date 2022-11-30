@@ -248,6 +248,18 @@ IMPLICIT NONE
     fvhcall_args_alloc=vhcall_args_alloc()
 END FUNCTION fvhcall_args_alloc
 
+!> @brief Allocate VH Call arguments object which can contain optional argument.
+!> @param[in] num number of arguments.
+!> @return On success, returns 64-bit integer specifying arguments object.
+!>         On failure, returns 0.
+FUNCTION fvhcall_args_alloc_num(num)
+USE VHCALL_FORTRAN_LOWLEVEL
+IMPLICIT NONE
+    INTEGER(int64)          :: fvhcall_args_alloc_num
+    INTEGER,          VALUE :: num
+    fvhcall_args_alloc_num=vhcall_args_alloc_num(num)
+END FUNCTION fvhcall_args_alloc_num
+
 !> @brief Clear VH Call arguments object.
 !> @param[in] args 64-bit integer specifying arguments object
 SUBROUTINE fvhcall_args_clear (args)
