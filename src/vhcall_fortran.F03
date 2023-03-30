@@ -37,6 +37,11 @@
 !>      Date,
 !>      Updates/Remarks
 !> @par
+!>      Rev.8,
+!>      Nov. 2022, @n
+!>      This revision covers libvhcall-fortran-2.13.0 or later. @n
+!>      Added descriptions and example for new API to support optional arguments
+!> @par
 !>      Rev.7,
 !>      Mar. 2022, @n
 !>      This revision covers libvhcall-fortran-2.11.0 or later. @n
