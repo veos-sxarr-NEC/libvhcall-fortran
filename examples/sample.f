@@ -26,11 +26,11 @@
         IR     = FVHCALL_ARGS_SET(CA2, FVHCALL_INTENT_INOUT, 1, VAL)
         IR     = FVHCALL_ARGS_SET(CA2, FVHCALL_INTENT_IN, 2, 2)
         ! 3rd argument is optional
-        ! IR     = FVHCALL_ARGS_SET(CA, FVHCALL_INTENT_IN, 3, 2)
+        ! IR     = FVHCALL_ARGS_SET(CA2, FVHCALL_INTENT_IN, 3, 2)
         IR     = FVHCALL_ARGS_SET(CA2, FVHCALL_INTENT_IN, 4, 3)
         WRITE(*,*)"VH subroutine INPUT(2) > ",VAL
         IR     = FVHCALL_INVOKE_WITH_ARGS(SYM, CA2)
-        IF (IR==1) THEN
+        IF (IR==-1) THEN
             WRITE(*,*)"Fail to invoke subroutine"
             STOP(1)
         ENDIF

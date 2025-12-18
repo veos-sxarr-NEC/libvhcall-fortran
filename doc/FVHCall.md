@@ -16,8 +16,13 @@ libvhcall-fortran-devel package,
 which has vhcall_fotran.mod file declaring VH call Fortran API functions.
 
 For example, execute the following command as root.
+On ve1
 ~~~
-# yum install libvhcall-fortran-devel
+# yum install libvhcall-fortran-ve1-devel
+~~~
+On ve3
+~~~
+# yum install libvhcall-fortran-ve3-devel
 ~~~
 
 If you execute a program using VH call only, no extra packages are required.

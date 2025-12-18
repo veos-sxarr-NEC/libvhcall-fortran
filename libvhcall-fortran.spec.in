@@ -14,6 +14,9 @@ Source0:        @PACKAGE_NAME@-@PACKAGE_VERSION@.tar.gz
 Vendor:         NEC Corporation
 BuildArch:      x86_64
 BuildRequires:  vedebuginfo
+%if 0%{?rhel} >= 10
+BuildRequires: chrpath
+%endif
 %if "%{_ve_arch}" == "ve3"
 BuildRequires:  libsysve-ve3-devel
 %else
@@ -41,12 +44,17 @@ libraries in libvhcall-fortran package
 %define _prefix @prefix@
 %define _libdir @prefix@/lib
 %define __strip /opt/nec/ve/bin/nstrip
-%if 0%{?rhel} == 8
+%if 0%{?rhel} >= 8
 %global __debug_install_post /opt/nec/ve/libexec/find-debuginfo.sh --unique-debug-suffix "-%{VERSION}-%{RELEASE}.%{_arch}" -S debugsourcefiles.list %{_builddir}/%{buildsubdir} %{nil}
 %else
 %global __debug_install_post /opt/nec/ve/libexec/find-debuginfo.sh %{nil}
 %endif
 %define __requires_exclude ^libn(cc|c\\+\\+|fort)\\.so\\..*$
+
+%if 0%{?rhel} >= 10
+%undefine _auto_set_build_flags
+%global __perl /usr/bin/perl
+%endif
 
 %prep
 %{__rm} -rf ${RPM_BUILD_ROOT}
@@ -54,6 +62,11 @@ libraries in libvhcall-fortran package
 %setup -q -n @PACKAGE_NAME@-@PACKAGE_VERSION@
 
 %build
+%if 0%{?rhel} >= 10
+#sed -i '/^case \$basic_machine in/a\  ve-nec)\n    cpu=ve\n    vendor=nec\n    ;;' build-aux/config.sub #workaround
+#sed -i '/^case \$cpu-\$vendor in/a\  ve-nec)\n    basic_os=linux\n    ;;' build-aux/config.sub #workaround
+export PERL=%{__perl}
+%endif
 ./configure --host=ve-nec-linux \
     --prefix=%{_prefix} \
     CC=@CC@ FC=@FC@
@@ -61,7 +74,13 @@ sed -i -e 's/^wl=""$/wl="-Wl,"/g' libtool # workaround to specify "-Wl,soname=xx
 make
 
 %install
+%if 0%{?rhel} >= 10
+%define __brp_remove_la_files %{nil}
+%endif
 make install DESTDIR=${RPM_BUILD_ROOT}
+%if 0%{?rhel} >= 10
+chrpath --delete %{buildroot}/%{_libdir}/*.so.*
+%endif
 
 %clean
 ls -l %{_libdir}

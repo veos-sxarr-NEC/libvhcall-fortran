@@ -37,6 +37,11 @@
 !>      Date,
 !>      Updates/Remarks
 !> @par
+!>      Rev.9,
+!>      Mar. 2023, @n
+!>      This revision covers libvhcall-fortran-3.0.1 or later. @n
+!>      Support VE3. @n
+!> @par
 !>      Rev.8,
 !>      Nov. 2022, @n
 !>      This revision covers libvhcall-fortran-2.13.0 or later. @n
